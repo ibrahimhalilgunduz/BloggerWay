@@ -10,7 +10,9 @@ namespace BloggerWay.Data.Concrete.EntityFramework.Mappings
         {
             // Composite primary key consisting of the LoginProvider and the key to use
             // with that provider
+
             builder.HasKey(l => new { l.LoginProvider, l.ProviderKey });
+
 
             // Limit the size of the composite key columns due to common DB restrictions
             builder.Property(l => l.LoginProvider).HasMaxLength(128);

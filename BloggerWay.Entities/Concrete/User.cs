@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
 using System.Collections.Generic;
 
 namespace BloggerWay.Entities.Concrete
 {
-    public class User : IdentityUser<Guid>
+    public class User : IdentityUser<int>
     {
 
 

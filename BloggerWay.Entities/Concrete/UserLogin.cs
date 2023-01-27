@@ -1,10 +1,16 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
 
 namespace BloggerWay.Entities.Concrete
 {
-    public class UserLogin : IdentityUserLogin<Guid>
+
+    public class UserLogin : IdentityUserLogin<int>
 
     {
+
+        public override string LoginProvider { get => base.LoginProvider; set => base.LoginProvider = value; }
+
+        public override string ProviderKey { get => base.ProviderKey; set => base.ProviderKey = value; }
+
+
     }
 }

@@ -4,7 +4,6 @@ using BloggerWay.Services.Abstract;
 using BloggerWay.Shared.Utilities.Extensions;
 using BloggerWay.Shared.Utilities.Results.ComplexTypes;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -56,7 +55,7 @@ namespace BloggerWay.MVC.Areas.Admin.Controllers
 
         }
         [HttpGet]
-        public async Task<IActionResult> Update(Guid categoryId)
+        public async Task<IActionResult> Update(int categoryId)
         {
             var result = await _categoryService.GetCategoryUpdateDto(categoryId);
             if (result.ResultStatus == ResultStatus.Success)
@@ -103,7 +102,7 @@ namespace BloggerWay.MVC.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> Delete(Guid categoryId)
+        public async Task<JsonResult> Delete(int categoryId)
         {
             var result = await _categoryService.Delete(categoryId, "Ali Veli");
             var deletedCategory = JsonSerializer.Serialize(result.Data);
