@@ -10,6 +10,6 @@ namespace BloggerWay.Data.Abstract
         ICommentRepository Comments { get; }
 
         Task<int> SaveAsync();
-
     }
+
 }

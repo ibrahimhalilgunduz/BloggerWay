@@ -16,22 +16,18 @@ namespace BloggerWay.Data.Concrete
         {
             _context = context;
         }
+
         public IArticleRepository Articles => _articleRepository ?? new EFArticleRepository(_context);
-
         public ICategoryRepository Categories => _categoryRepository ?? new EFCategoryRepository(_context);
-
         public ICommentRepository Comments => _commentRepository ?? new EFCommentRepository(_context);
-
-
+        public async Task<int> SaveAsync()
+        {
+            return await _context.SaveChangesAsync();
+        }
 
         public async ValueTask DisposeAsync()
         {
             await _context.DisposeAsync();
-        }
-
-        public async Task<int> SaveAsync()
-        {
-            return await _context.SaveChangesAsync();
         }
     }
 }

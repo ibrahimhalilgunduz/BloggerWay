@@ -1,6 +1,7 @@
 ﻿using BloggerWay.Shared.Entities.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -24,6 +25,8 @@ namespace BloggerWay.Shared.Data.Abstract
             params Expression<Func<T, object>>[] includeProperties);
         Task<bool> AnyAsync(Expression<Func<T, bool>> predicate);
         Task<int> CountAsync(Expression<Func<T, bool>> predicate = null);
+
+        IQueryable<T> GetAsQueryable();
     }
 
 }

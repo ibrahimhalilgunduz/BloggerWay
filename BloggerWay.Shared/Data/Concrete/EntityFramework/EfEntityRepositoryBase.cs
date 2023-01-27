@@ -11,13 +11,14 @@ using System.Threading.Tasks;
 namespace BloggerWay.Shared.Data.Concrete.EntityFramework
 {
     public class EfEntityRepositoryBase<TEntity> : IEntityRepository<TEntity>
-    where TEntity : class, IEntity, new()
+     where TEntity : class, IEntity, new()
     {
         protected readonly DbContext _context;
 
         public EfEntityRepositoryBase(DbContext context)
         {
             _context = context;
+            //_context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         public async Task<IList<TEntity>> GetAllAsyncV2(IList<Expression<Func<TEntity, bool>>> predicates, IList<Expression<Func<TEntity, object>>> includeProperties)
@@ -83,6 +84,11 @@ namespace BloggerWay.Shared.Data.Concrete.EntityFramework
         public async Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate = null)
         {
             return await (predicate == null ? _context.Set<TEntity>().CountAsync() : _context.Set<TEntity>().CountAsync(predicate));
+        }
+
+        public IQueryable<TEntity> GetAsQueryable()
+        {
+            return _context.Set<TEntity>().AsQueryable();
         }
 
         public async Task DeleteAsync(TEntity entity)
