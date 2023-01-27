@@ -16,7 +16,10 @@
                 if (isPlural) return "Hiç bir kategori bulunamadı.";
                 return "Böyle bir kategori bulunamadı.";
             }
-
+            public static string NotFoundById(int categoryId)
+            {
+                return $"{categoryId} kategori koduna ait bir kategori bulunamadı.";
+            }
             public static string Add(string categoryName)
             {
                 return $"{categoryName} adlı kategori başarıyla eklenmiştir.";
@@ -110,6 +113,15 @@
             {
                 return $"{createdByName} tarafından eklenen yorum başarıyla arşivden geri getirilmiştir.";
             }
+        }
+        public static class User
+        {
+
+            public static string NotFoundById(int userId)
+            {
+                return $"{userId} kullanıcı koduna ait bir kullanıcı bulunamadı.";
+            }
+
         }
     }
 }
