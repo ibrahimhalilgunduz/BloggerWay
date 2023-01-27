@@ -1,4 +1,7 @@
 ﻿$(document).ready(function () {
+
+    // Trumbowyg
+
     $('#text-editor').trumbowyg({
         lang: 'tr',
         btns: [
@@ -30,5 +33,15 @@
                 displayAsList: false
             }
         }
+    });
+
+    // Trumbowyg
+
+    // Select2
+
+    $('#categoryList').select2({
+        theme: 'bootstrap4',
+        placeholder: "Lütfen bir kategori seçiniz...",
+        allowClear: true
     });
 });
