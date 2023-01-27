@@ -137,7 +137,7 @@
                             if (commentResult.Data) {
                                 Swal.fire(
                                     'Silindi!',
-                                    `${commentResult.Message}`,
+                                    `${commentResult.Data.Comment.Id} no'lu yorum başarıyla silinmiştir.`,
                                     'success'
                                 );
 
@@ -146,7 +146,7 @@
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Başarısız İşlem!',
-                                    text: `${commentResult.Message}`,
+                                    text: `Beklenmedik bir hata oluştu.`,
                                 });
                             }
                         },
@@ -269,7 +269,7 @@
             Swal.fire({
                 title: 'Onaylamak istediğinize emin misiniz?',
                 text: `${commentText} içerikli yorum onaylanacaktır!`,
-                icon: 'question',
+                icon: 'info',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
