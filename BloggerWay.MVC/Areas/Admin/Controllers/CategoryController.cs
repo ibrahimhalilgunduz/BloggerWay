@@ -1,9 +1,13 @@
-﻿using BloggerWay.Entities.Dtos;
+﻿using AutoMapper;
+using BloggerWay.Entities.Concrete;
+using BloggerWay.Entities.Dtos;
 using BloggerWay.MVC.Areas.Admin.Models;
+using BloggerWay.MVC.Helpers.Abstract;
 using BloggerWay.Services.Abstract;
 using BloggerWay.Shared.Utilities.Extensions;
 using BloggerWay.Shared.Utilities.Results.ComplexTypes;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -13,11 +17,11 @@ namespace BloggerWay.MVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = "Admin,Editor")]
-    public class CategoryController : Controller
+    public class CategoryController : BaseController
     {
         private readonly ICategoryService _categoryService;
 
-        public CategoryController(ICategoryService categoryService)
+        public CategoryController(ICategoryService categoryService, UserManager<User> userManager, IMapper mapper, IImageHelper imageHelper) : base(userManager, mapper, imageHelper)
         {
             _categoryService = categoryService;
         }
@@ -38,7 +42,7 @@ namespace BloggerWay.MVC.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _categoryService.AddAsync(categoryAddDto, "Ali Veli");
+                var result = await _categoryService.AddAsync(categoryAddDto, LoggedInUser.UserName);
                 if (result.ResultStatus == ResultStatus.Success)
                 {
                     var categoryAddAjaxModel = JsonSerializer.Serialize(new CategoryAddAjaxViewModel
@@ -74,7 +78,7 @@ namespace BloggerWay.MVC.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _categoryService.UpdateAsync(categoryUpdateDto, "Ali Veli");
+                var result = await _categoryService.UpdateAsync(categoryUpdateDto, LoggedInUser.UserName);
                 if (result.ResultStatus == ResultStatus.Success)
                 {
                     var categoryUpdateAjaxModel = JsonSerializer.Serialize(new CategoryUpdateAjaxViewModel
@@ -106,7 +110,7 @@ namespace BloggerWay.MVC.Areas.Admin.Controllers
         [HttpPost]
         public async Task<JsonResult> Delete(int categoryId)
         {
-            var result = await _categoryService.DeleteAsync(categoryId, "Ali Veli");
+            var result = await _categoryService.DeleteAsync(categoryId, LoggedInUser.UserName);
             var deletedCategory = JsonSerializer.Serialize(result.Data);
             return Json(deletedCategory);
         }

@@ -1,29 +1,27 @@
 ﻿using AutoMapper;
 using BloggerWay.Entities.ComplexTypes;
+using BloggerWay.Entities.Concrete;
 using BloggerWay.Entities.Dtos;
 using BloggerWay.MVC.Areas.Admin.Models;
 using BloggerWay.MVC.Helpers.Abstract;
 using BloggerWay.Services.Abstract;
 using BloggerWay.Shared.Utilities.Results.ComplexTypes;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace BloggerWay.MVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class ArticleController : Controller
+    public class ArticleController : BaseController
     {
         private readonly IArticleService _articleService;
         private readonly ICategoryService _categoryService;
-        private readonly IMapper _mapper;
-        private readonly IImageHelper _imageHelper;
 
-        public ArticleController(IArticleService articleService, ICategoryService categoryService, IMapper mapper, IImageHelper imageHelper)
+        public ArticleController(IArticleService articleService, ICategoryService categoryService, UserManager<User> userManager, IMapper mapper, IImageHelper imageHelper) : base(userManager, mapper, imageHelper)
         {
             _articleService = articleService;
             _categoryService = categoryService;
-            _mapper = mapper;
-            _imageHelper = imageHelper;
         }
 
         [HttpGet]
@@ -52,11 +50,11 @@ namespace BloggerWay.MVC.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var articleAddDto = _mapper.Map<ArticleAddDto>(articleAddViewModel);
-                var imageResult = await _imageHelper.Upload(articleAddViewModel.Title,
+                var articleAddDto = Mapper.Map<ArticleAddDto>(articleAddViewModel);
+                var imageResult = await ImageHelper.Upload(articleAddViewModel.Title,
                     articleAddViewModel.ThumbnailFile, PictureType.Post);
                 articleAddDto.Thumbnail = imageResult.Data.FullName;
-                var result = await _articleService.AddAsync(articleAddDto, "Ali Veli");
+                var result = await _articleService.AddAsync(articleAddDto, LoggedInUser.UserName);
                 if (result.ResultStatus == ResultStatus.Success)
                 {
                     TempData.Add("SuccessMessage", result.Message);
