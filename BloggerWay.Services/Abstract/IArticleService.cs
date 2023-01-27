@@ -1,5 +1,7 @@
-﻿using BloggerWay.Entities.Dtos;
+﻿using BloggerWay.Entities.ComplexTypes;
+using BloggerWay.Entities.Dtos;
 using BloggerWay.Shared.Utilities.Results.Abstract;
+using System;
 using System.Threading.Tasks;
 
 namespace BloggerWay.Services.Abstract
@@ -17,6 +19,10 @@ namespace BloggerWay.Services.Abstract
 
         Task<IDataResult<ArticleListDto>> GetAllByPagingAsync(int? categoryId, int currentPage = 1, int pageSize = 5,
             bool isAscending = false);
+
+        Task<IDataResult<ArticleListDto>> GetAllByUserIdOnFilter(int userId, FilterBy filterBy, OrderBy orderBy,
+            bool isAscending, int takeSize, int categoryId, DateTime startAt, DateTime endAt, int minViewCount,
+            int maxViewCount, int minCommentCount, int maxCommentCount);
 
         Task<IDataResult<ArticleListDto>> SearchAsync(string keyword, int currentPage = 1, int pageSize = 5,
             bool isAscending = false);
