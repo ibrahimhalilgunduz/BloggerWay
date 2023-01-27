@@ -49,7 +49,9 @@
                                     <td>${convertToShortDate(category.ModifiedDate)}</td>
                                     <td>${category.ModifiedByName}</td>
                                      <td>
-                                <button class="btn btn-primary btn-sm "><span class="fas fa-edit"></span> </button>
+                                                 
+
+                                         <button class="btn btn-primary btn-sm btn-update" data-id="${category.Id}"><span class="fas fa-edit"></span> </button>
                                 <button class="btn btn-danger btn-sm  btn-delete" data-id="${category.Id}"><span class="fas fa-minus-circle"></span> </button>
                             </td>
                                             </tr>`;
@@ -152,7 +154,7 @@
                                                     <td>${categoryAddAjaxModel.CategoryDto.Category.ModifiedByName}</td>
 
                                                     <td>
-                                                    <button class="btn btn-primary btn-sm "><span class="fas fa-edit"></span> </button>
+                                                    <button class="btn btn-primary btn-sm btn-update" data-id="${categoryAddAjaxModel.CategoryDto.Category.Id}"><span class="fas fa-edit"></span> </button>
                                                     <button class="btn btn-danger btn-sm  btn-delete" data-id="${categoryAddAjaxModel.CategoryDto.Category.Id}"><span class="fas fa-minus-circle"></span> </button>
                                                      </td>
                                </tr>`;
@@ -226,18 +228,18 @@
                 }
             });
         });
-    $(function () {
+$(function() {
         const url = '/Admin/Category/Update/';
         const placeHolderDiv = $('#modalPlaceHolder');
         $(document).on('click',
             '.btn-update',
-            function (event) {
+            function(event) {
                 event.preventDefault();
                 const id = $(this).attr('data-id');
-                $.get(url, { categoryId: id }).done(function (data) {
+                $.get(url, { categoryId: id }).done(function(data) {
                     placeHolderDiv.html(data);
                     placeHolderDiv.find('.modal').modal('show');
-                }).fail(function () {
+                }).fail(function() {
                     toastr.error("Bir hata oluştu.");
                 });
             });
