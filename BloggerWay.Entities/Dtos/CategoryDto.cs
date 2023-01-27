@@ -1,4 +1,5 @@
 ﻿using BloggerWay.Entities.Concrete;
+using BloggerWay.Shared.Entities.Abstract;
 
 namespace BloggerWay.Entities.Dtos
 {

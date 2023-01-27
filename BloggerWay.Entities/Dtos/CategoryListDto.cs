@@ -1,4 +1,5 @@
 ﻿using BloggerWay.Entities.Concrete;
+using BloggerWay.Shared.Entities.Abstract;
 using System.Collections.Generic;
 
 namespace BloggerWay.Entities.Dtos
