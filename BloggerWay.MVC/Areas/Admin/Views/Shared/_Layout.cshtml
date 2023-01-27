@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.Extensions.Options
+@using BloggerWay.Entities.Concrete
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject IOptionsSnapshot<WebsiteInfo> WebsiteInfo
+@{
+    var websiteInfo = WebsiteInfo.Value;
+}
+<!DOCTYPE html>
 <html lang="tr">
     <head>
         <meta charset="utf-8" />
@@ -6,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>@ViewBag.Title - Admin Paneli | BloggerWay </title>
+        <title>@ViewBag.Title - Admin Paneli | @websiteInfo.MenuTitle </title>
         @await Html.PartialAsync("_LayoutCssPartial.cshtml")
         @await RenderSectionAsync("Styles",false);
         <link href="~/AdminLTE/css/site.css" rel="stylesheet"/>
@@ -18,9 +25,9 @@
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Arama..." aria-label="Search" aria-describedby="basic-addon2" />
+                    <input  class="form-control" type="text" placeholder="Arama..." aria-label="Search" aria-describedby="basic-addon2" />
                     <div class="input-group-append">
-                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                        <button style="background-color:#c47941" class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
             </form>
@@ -46,7 +53,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Tüm Hakları Saklıdır &copy; BloggerWay @DateTime.Now.Year
+                            <div class="text-muted">Tüm Hakları Saklıdır &copy; @websiteInfo.MenuTitle @DateTime.Now.Year
                             </div>
                             <div>
                                 <a href="#">Gizlilik Politikası</a>

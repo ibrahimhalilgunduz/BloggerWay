@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.Extensions.Options
+@using BloggerWay.Entities.Concrete
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject IOptionsSnapshot<WebsiteInfo> WebsiteInfo
+@{
+    var websiteInfo = WebsiteInfo.Value;
+}
+<!DOCTYPE html>
 <html lang="tr">
     <head>
         <meta charset="utf-8" />
@@ -6,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>@ViewBag.Title | BloggerWay</title>
+        <title>@ViewBag.Title | @websiteInfo.MenuTitle</title>
         <link href="~/AdminLTE/css/styles.css" rel="stylesheet" />
         <link href="~/AdminLTE/css/login.css" rel="stylesheet" />
 
@@ -23,7 +30,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Tüm Telif Hakları Saklıdır &copy; BloggerWay @DateTime.Now.Year</div>
+                            <div class="text-muted">Tüm Telif Hakları Saklıdır &copy;  @websiteInfo.MenuTitle @DateTime.Now.Year</div>
                             <div>
                                 <a href="#">Gizlilik Politikası</a>
                                 &middot;
