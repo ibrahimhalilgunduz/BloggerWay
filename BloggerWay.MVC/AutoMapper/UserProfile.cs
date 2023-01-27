@@ -10,6 +10,7 @@ namespace BloggerWay.MVC.AutoMapper
         {
 
             CreateMap<UserAddDto, User>();
+            CreateMap<User, UserUpdateDto>();
         }
     }
 }
