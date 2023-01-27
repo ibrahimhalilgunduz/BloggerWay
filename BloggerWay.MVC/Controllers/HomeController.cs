@@ -1,5 +1,6 @@
 ﻿
 using BloggerWay.Entities.Concrete;
+using BloggerWay.Entities.Dtos;
 using BloggerWay.Services.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -26,9 +27,19 @@ namespace BloggerWay.MVC.Controllers
             return View(articlesResult.Data);
         }
         [HttpGet]
-        public async Task<IActionResult> About()
+        public IActionResult About()
         {
             return View(_aboutUsPageInfo);
+        }
+        [HttpGet]
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Contact(EmailSendDto emailSendDto)
+        {
+            return View();
         }
     }
 }
