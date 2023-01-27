@@ -1,5 +1,6 @@
 ﻿@using BloggerWay.Entities.Concrete
 @model BloggerWay.MVC.Models.RightSideBarViewModel
+
 <div class="row-cols-md-6">
 
     
@@ -22,11 +23,14 @@
                             
                         </ul>
         <h3 class="widget-title">Kategoriler</h3>
+    <br />
         <ul style="color:white"class="catgs-links">
-        <li><a style="color:black"  href="~/Home/Index">Hepsi</a></li>
+        <li style="background-color:white"><a style="color:black"  asp-controller="Home" asp-action="Index">Hepsi</a></li>
             @foreach (var category in Model.Categories)
             {
-                <li><a style="color:black" asp-controller="Home" asp-action="Index" href="~/?categoryId=@category.Id">@category.Name</a></li>
+               <li class="list-group-item">
+                                <a a style="color:black" asp-controller="Home" asp-action="Index" asp-route-categoryId="@category.Id">@category.Name</a>
+                            </li>
             }
         </ul>
     </div>
@@ -42,14 +46,14 @@
                         {
                             if (i%2==0)
                             {
-                                <li style="background-color: whitesmoke" class="list-group-item list-group-item">
-                                    <a style="color:black" href="~/Article/Detail?articleId=@Model.Articles[i].Id">@Model.Articles[i].Title</a>
+                     <li style="background-color: whitesmoke" class="list-group-item list-group-item-primary">
+                                    <a style="color:black" asp-controller="Article" asp-action="Detail" asp-route-articleId="@Model.Articles[i].Id">@Model.Articles[i].Title</a>
                                </li>
                             }
                             else
                             {
-                                <li style="background-color: whitesmoke" class="list-group-item list-group-item">
-                                    <a style="color:#c47941" href="~/Article/Detail?articleId=@Model.Articles[i].Id">@Model.Articles[i].Title</a>
+                             <li style="background-color: whitesmoke" class="list-group-item list-group-item-info">
+                                    <a style="color:#c47941" asp-controller="Article" asp-action="Detail" asp-route-articleId="@Model.Articles[i].Id">@Model.Articles[i].Title</a>
                                 </li>
                             }
                         }
