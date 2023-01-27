@@ -42,14 +42,14 @@ namespace BloggerWay.MVC.Areas.Admin.Controllers
         {
             string wwwroot = _env.WebRootPath;
 
-            string fileExtension = Path.GetExtension(userAddDto.Picture.FileName);
+            string fileExtension = Path.GetExtension(userAddDto.PictureFile.FileName);
             DateTime dateTime = DateTime.Now;
             //AliVeli_578_1_44_15_4_12_2022.png
             string fileName = $"{userAddDto.UserName}_{dateTime.FullDateAndTimeStringWithUnderscore()}_{fileExtension}";
             var path = Path.Combine($"{wwwroot}/img", fileName);
             await using (var stream = new FileStream(path, FileMode.Create))
             {
-                await userAddDto.Picture.CopyToAsync(stream);
+                await userAddDto.PictureFile.CopyToAsync(stream);
             }
             return fileName;//AliVeli_578_1_44_15_4_12_2022.png " "~/img/user.picture"
 
