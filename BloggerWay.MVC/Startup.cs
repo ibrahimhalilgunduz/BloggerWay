@@ -20,6 +20,7 @@ namespace BloggerWay.MVC
                 opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
             });
+            services.AddSession();
             services.AddAutoMapper(typeof(CategoryProfile), typeof(ArticleProfile));
             services.LoadMyServices();
         }
@@ -31,9 +32,13 @@ namespace BloggerWay.MVC
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSession();
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
