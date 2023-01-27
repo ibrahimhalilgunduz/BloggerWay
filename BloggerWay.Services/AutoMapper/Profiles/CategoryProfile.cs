@@ -11,7 +11,7 @@ namespace BloggerWay.Services.AutoMapper.Profiles
         {
             CreateMap<CategoryAddDto, Category>().ForMember(c => c.CreatedDate, d => d.MapFrom(x => DateTime.Now));
             CreateMap<CategoryUpdateDto, Category>().ForMember(c => c.ModifiedByName, d => d.MapFrom(x => DateTime.Now));
-
+            CreateMap<Category, CategoryUpdateDto>();
         }
     }
 }
