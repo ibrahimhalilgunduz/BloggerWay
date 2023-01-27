@@ -1,4 +1,5 @@
-﻿using BloggerWay.Entities.Concrete;
+﻿using BloggerWay.Data.Concrete.EntityFramework.Mappings;
+using BloggerWay.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
 namespace BloggerWay.Data.Concrete.EntityFramework.Contexts
@@ -15,7 +16,16 @@ namespace BloggerWay.Data.Concrete.EntityFramework.Contexts
             optionsBuilder.UseNpgsql(@"Server=127.0.0.1;Port=5432;Database=BloggerWay;User Id=postgres;Password=123;");
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
 
+            modelBuilder.ApplyConfiguration(new ArticleMap());
+            modelBuilder.ApplyConfiguration(new CategoryMap());
+            modelBuilder.ApplyConfiguration(new CommentMap());
+            modelBuilder.ApplyConfiguration(new RoleMap());
+            modelBuilder.ApplyConfiguration(new UserMap());
+
+        }
 
     }
 }
