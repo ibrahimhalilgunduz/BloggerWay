@@ -54,7 +54,7 @@
                             {
                                 label: 'Okunma Sayısı',
                                 data: articleResult.$values.map(article => article.ViewCount),
-                                backgroundColor: '#fb3640',
+                                backgroundColor: '#c47941',
                                 hoverBorderWidth: 4,
                                 hoverBorderColor: 'black'
                             }]

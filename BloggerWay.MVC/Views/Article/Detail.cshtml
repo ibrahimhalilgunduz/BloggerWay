@@ -11,10 +11,10 @@
 <div class="col-lg-8">
 
     <!-- Title -->
-    <h1 class="mt-4">@Model.ArticleDto.Article.Title</h1>
+    <h1 style="color:black" class="mt-4">@Model.ArticleDto.Article.Title</h1>
 
     <!-- Author -->
-    <p class="lead">
+    <p  style="color:black"  class="lead">
         @Model.ArticleDto.Article.User.UserName tarafından @Model.ArticleDto.Article.Date.ToShortDateString() tarihinde paylaşılmıştır.
     </p>
 
@@ -40,16 +40,16 @@
         @foreach (var comment in Model.ArticleDto.Article.Comments)
         {<!-- Single Comment -->
             <div class="media mb-4">
-                <img class="d-flex mr-3 rounded-circle" src="https://randomuser.me/api/portraits/men/34.jpg" alt="">
+                <img class="d-flex mr-3 rounded-circle" src="https://randomuser.me/api/portraits/men/62.jpg" alt="">
                 <div class="media-body">
-                    <h5 class="mt-0">@comment.CreatedByName</h5>
+                    <h5  style="color:black"  class="mt-0">@comment.CreatedByName</h5>
+                    <br />
                     @comment.Text
                 </div>
             </div>}
     </div>
 </div>
-    <partial name="_ArticleDetailRightSideBarPartial" model="@Model.ArticleDetailRightSideBarViewModel"/>
-
+<partial name="_ArticleDetailRightSideBarPartial" model="@Model.ArticleDetailRightSideBarViewModel"/>
 @section Scripts{ 
-    <script src="~/BlogHome/js/articleDetail.js" type="text/ecmascript"></script>
+    <script src="~/blog/js/articleDetail.js" type="text/ecmascript"></script>
 }

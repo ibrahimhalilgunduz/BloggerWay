@@ -17,7 +17,7 @@
                     if (isValid) {
                         const newSingleComment = `
                    <div class="media mb-4">
-                        <img class="d-flex mr-3 rounded-circle" src="https://randomuser.me/api/portraits/men/34.jpg" alt="">
+                        <img class="d-flex mr-3 rounded-circle" src="https://randomuser.me/api/portraits/men/62.jpg" alt="">
                         <div class="media-body">
                             <h5 class="mt-0">${commentAddAjaxModel.CommentDto.Comment.CreatedByName}</h5>
                             ${commentAddAjaxModel.CommentDto.Comment.Text}

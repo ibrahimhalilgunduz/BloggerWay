@@ -4,7 +4,7 @@
     ViewBag.Title = "Yönetim Paneli";
 }
 @*<h1 class="mt-4">Dashboard</h1>*@
-<ol class="breadcrumb mb-3 mt-2">
+<ol style="background-color:#182539" class="breadcrumb mb-3 mt-2">
     <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
     <li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Yönetim Paneli</a></li>
 </ol>
@@ -49,9 +49,9 @@
 <div class="row">
     <div class="col-xl-12">
         <div class="card mb-4">
-            <div class="card-header">
-                <i class="fas fa-chart-area mr-1"></i>
-                En Çok Okunan Makaleler Grafiği
+            <div style="background-color:#182539" class="card-header">
+                <i style="color:white" class="fas fa-chart-area mr-1"></i>
+               <a style="color:white">  En Çok Okunan Makaleler Grafiği </a>
             </div>
             <div class="card-body"><canvas id="viewCountChart" width="100%" height="30"></canvas></div>
         </div>
@@ -67,9 +67,9 @@
     </div>*@
 </div>
 <div class="card mb-4">
-    <div class="card-header">
-        <i class="fas fa-table mr-1"></i>
-        Son Paylaşılan Makaleler
+    <div style="background-color:#182539" class="card-header">
+        <i  style="color:white" class="fas fa-table mr-1"></i>
+        <a style="color:white"> Son Paylaşılan Makaleler </a> 
     </div>
     <div class="card-body">
         <div class="table-responsive">
