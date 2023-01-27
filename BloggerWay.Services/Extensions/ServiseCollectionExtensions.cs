@@ -11,11 +11,11 @@ using System;
 
 namespace BloggerWay.Services.Extensions
 {
-    public static class ServiseCollectionExtensions
+    public static class ServiceCollectionExtensions
     {
         public static IServiceCollection LoadMyServices(this IServiceCollection serviceCollection, string connectionString)
         {
-            serviceCollection.AddDbContext<BloggerWayContext>(options => options.UseNpgsql(connectionString));
+            serviceCollection.AddDbContext<BloggerWayContext>(options => options.UseNpgsql(connectionString).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
             serviceCollection.AddIdentity<User, Role>(options =>
             {
                 // User Password Options
@@ -40,7 +40,6 @@ namespace BloggerWay.Services.Extensions
             serviceCollection.AddScoped<ICommentService, CommentManager>();
             serviceCollection.AddSingleton<IMailService, MailManager>();
             return serviceCollection;
-
         }
     }
 }

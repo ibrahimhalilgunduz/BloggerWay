@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace BloggerWay.Shared.Data.Concrete.EntityFramework
 {
     public class EfEntityRepositoryBase<TEntity> : IEntityRepository<TEntity>
-    where TEntity : class, IEntity, new()
+     where TEntity : class, IEntity, new()
     {
         protected readonly DbContext _context;
 
@@ -49,7 +49,7 @@ namespace BloggerWay.Shared.Data.Concrete.EntityFramework
                 }
             }
 
-            return await query.ToListAsync();
+            return await query.AsNoTracking().ToListAsync();
         }
 
         public async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate)
@@ -83,7 +83,7 @@ namespace BloggerWay.Shared.Data.Concrete.EntityFramework
                 }
             }
 
-            return await query.ToListAsync();
+            return await query.AsNoTracking().ToListAsync();
         }
 
         public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includeProperties)
@@ -99,7 +99,7 @@ namespace BloggerWay.Shared.Data.Concrete.EntityFramework
                 }
             }
 
-            return await query.SingleOrDefaultAsync();
+            return await query.AsNoTracking().SingleOrDefaultAsync();
         }
 
         public async Task<TEntity> UpdateAsync(TEntity entity)
