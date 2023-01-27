@@ -1,5 +1,6 @@
 using BloggerWay.Entities.Concrete;
 using BloggerWay.MVC.AutoMapper;
+using BloggerWay.MVC.Filters;
 using BloggerWay.MVC.Helpers.Abstract;
 using BloggerWay.MVC.Helpers.Concrete;
 using BloggerWay.Services.AutoMapper.Profiles;
@@ -29,7 +30,11 @@ namespace BloggerWay.MVC
         {
             services.Configure<AboutUsPageInfo>(Configuration.GetSection("AboutUsPageInfo"));
             services.Configure<WebsiteInfo>(Configuration.GetSection("WebsiteInfo"));
-            services.AddControllersWithViews(options => options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(value => "bu alan boþ geçilmemelidir.")).AddRazorRuntimeCompilation().AddJsonOptions(opt =>
+            services.AddControllersWithViews(options =>
+            {
+                options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(value => "Bu alan boþ geçilmemelidir.");
+                options.Filters.Add<MvcExceptionFilter>();
+            }).AddRazorRuntimeCompilation().AddJsonOptions(opt =>
             {
                 opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
