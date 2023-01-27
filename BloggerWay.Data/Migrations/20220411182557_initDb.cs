@@ -251,9 +251,9 @@ namespace BloggerWay.Data.Migrations
                 columns: new[] { "Id", "CreatedByName", "CreatedDate", "Description", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedDate", "Name", "Note" },
                 values: new object[,]
                 {
-                    { 1, "InitialCreate", new DateTime(2022, 4, 11, 19, 8, 45, 914, DateTimeKind.Local).AddTicks(1204), "C# Programlama Dili ile ilgili en güncel bilgiler.", true, false, "InitialCreate", new DateTime(2022, 4, 11, 19, 8, 45, 914, DateTimeKind.Local).AddTicks(2846), "C#", "C# Blog Kategorisi" },
-                    { 2, "InitialCreate", new DateTime(2022, 4, 11, 19, 8, 45, 914, DateTimeKind.Local).AddTicks(5391), "C++ Programlama Dili ile ilgili en güncel bilgiler.", true, false, "InitialCreate", new DateTime(2022, 4, 11, 19, 8, 45, 914, DateTimeKind.Local).AddTicks(5394), "C++", "C++ Blog Kategorisi" },
-                    { 3, "InitialCreate", new DateTime(2022, 4, 11, 19, 8, 45, 914, DateTimeKind.Local).AddTicks(5405), "JavaScript Programlama Dili ile ilgili en güncel bilgiler.", true, false, "InitialCreate", new DateTime(2022, 4, 11, 19, 8, 45, 914, DateTimeKind.Local).AddTicks(5408), "JavaScript", "JavaScript Blog Kategorisi" }
+                    { 1, "InitialCreate", new DateTime(2022, 4, 11, 21, 25, 56, 889, DateTimeKind.Local).AddTicks(748), "C# Programlama Dili ile ilgili en güncel bilgiler.", true, false, "InitialCreate", new DateTime(2022, 4, 11, 21, 25, 56, 889, DateTimeKind.Local).AddTicks(1208), "C#", "C# Blog Kategorisi" },
+                    { 2, "InitialCreate", new DateTime(2022, 4, 11, 21, 25, 56, 889, DateTimeKind.Local).AddTicks(1744), "C++ Programlama Dili ile ilgili en güncel bilgiler.", true, false, "InitialCreate", new DateTime(2022, 4, 11, 21, 25, 56, 889, DateTimeKind.Local).AddTicks(1745), "C++", "C++ Blog Kategorisi" },
+                    { 3, "InitialCreate", new DateTime(2022, 4, 11, 21, 25, 56, 889, DateTimeKind.Local).AddTicks(1748), "JavaScript Programlama Dili ile ilgili en güncel bilgiler.", true, false, "InitialCreate", new DateTime(2022, 4, 11, 21, 25, 56, 889, DateTimeKind.Local).AddTicks(1750), "JavaScript", "JavaScript Blog Kategorisi" }
                 });
 
             migrationBuilder.CreateIndex(
