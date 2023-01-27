@@ -5,6 +5,7 @@ using BloggerWay.Entities.Concrete;
 using BloggerWay.Entities.Dtos;
 using BloggerWay.Services.Abstract;
 using BloggerWay.Services.Utilities;
+using BloggerWay.Shared.Entities.Concrete;
 using BloggerWay.Shared.Utilities.Results.Abstract;
 using BloggerWay.Shared.Utilities.Results.ComplexTypes;
 using BloggerWay.Shared.Utilities.Results.Concrete;
@@ -40,6 +41,34 @@ namespace BloggerWay.Services.Concrete
                 });
             }
             return new DataResult<ArticleDto>(ResultStatus.Error, Messages.Article.NotFound(isPlural: false), null);
+        }
+
+        public async Task<IDataResult<ArticleDto>> GetByIdAsync(int articleId, bool includeCategory, bool includeComments, bool includeUser)
+        {
+            List<Expression<Func<Article, bool>>> predicates = new List<Expression<Func<Article, bool>>>();
+            List<Expression<Func<Article, object>>> includes = new List<Expression<Func<Article, object>>>();
+            if (includeCategory) includes.Add(a => a.Category);
+            if (includeComments) includes.Add(a => a.Comments);
+            if (includeUser) includes.Add(a => a.User);
+            predicates.Add(a => a.Id == articleId);
+            var article = await UnitOfWork.Articles.GetAsyncV2(predicates, includes);
+            if (article == null)
+            {
+                return new DataResult<ArticleDto>(ResultStatus.Warning, Messages.General.ValidationError(), null,
+                    new List<ValidationError>
+                    {
+                        new ValidationError
+                        {
+                            PropertyName = "articleId",
+                            Message = Messages.Article.NotFoundById(articleId)
+                        }
+                    });
+            }
+
+            return new DataResult<ArticleDto>(ResultStatus.Success, new ArticleDto
+            {
+                Article = article
+            });
         }
 
         public async Task<IDataResult<ArticleUpdateDto>> GetArticleUpdateDtoAsync(int articleId)
