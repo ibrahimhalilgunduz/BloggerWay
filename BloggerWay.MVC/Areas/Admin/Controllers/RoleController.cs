@@ -88,6 +88,7 @@ namespace BloggerWay.MVC.Areas.Admin.Controllers
                     }
                 }
 
+                await UserManager.UpdateSecurityStampAsync(user);
                 var userRoleAssignAjaxViewModel = JsonSerializer.Serialize(new UserRoleAssignAjaxViewModel
                 {
                     UserDto = new UserDto
