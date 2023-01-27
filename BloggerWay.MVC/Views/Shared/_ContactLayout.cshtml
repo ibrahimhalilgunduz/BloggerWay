@@ -89,7 +89,7 @@
             </form>
             <a href="#" title="" class="close-search"><i class="la la-close"></i></a>
         </div>
-    </div>
+    
 
     <script src="~/blog/js/jquery.min.js"></script>
     <script src="~/blog/js/popper.js"></script>
@@ -99,5 +99,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" crossorigin="anonymous"></script>
 
      @await RenderSectionAsync("Scripts",false)
+     @await Component.InvokeAsync("NToastNotify")
 </body>
 </html>

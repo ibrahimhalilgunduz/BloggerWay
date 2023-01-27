@@ -4,7 +4,6 @@ using BloggerWay.Entities.Dtos;
 using BloggerWay.Services.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using System;
 using System.Threading.Tasks;
 
 namespace BloggerWay.MVC.Controllers
@@ -30,13 +29,13 @@ namespace BloggerWay.MVC.Controllers
         [HttpGet]
         public IActionResult About()
         {
-            throw new Exception("Hata!");
+
             return View(_aboutUsPageInfo);
         }
         [HttpGet]
         public IActionResult Contact()
         {
-            throw new NullReferenceException();
+
             return View();
         }
         [HttpPost]
