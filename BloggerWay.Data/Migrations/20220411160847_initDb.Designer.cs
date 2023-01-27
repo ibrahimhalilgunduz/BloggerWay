@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BloggerWay.Data.Migrations
 {
     [DbContext(typeof(BloggerWayContext))]
-    [Migration("20220411003304_initDb")]
+    [Migration("20220411160847_initDb")]
     partial class initDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -159,12 +159,12 @@ namespace BloggerWay.Data.Migrations
                         {
                             Id = 1,
                             CreatedByName = "InitialCreate",
-                            CreatedDate = new DateTime(2022, 4, 11, 3, 33, 4, 61, DateTimeKind.Local).AddTicks(1338),
+                            CreatedDate = new DateTime(2022, 4, 11, 19, 8, 45, 914, DateTimeKind.Local).AddTicks(1204),
                             Description = "C# Programlama Dili ile ilgili en güncel bilgiler.",
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "InitialCreate",
-                            ModifiedDate = new DateTime(2022, 4, 11, 3, 33, 4, 61, DateTimeKind.Local).AddTicks(1830),
+                            ModifiedDate = new DateTime(2022, 4, 11, 19, 8, 45, 914, DateTimeKind.Local).AddTicks(2846),
                             Name = "C#",
                             Note = "C# Blog Kategorisi"
                         },
@@ -172,12 +172,12 @@ namespace BloggerWay.Data.Migrations
                         {
                             Id = 2,
                             CreatedByName = "InitialCreate",
-                            CreatedDate = new DateTime(2022, 4, 11, 3, 33, 4, 61, DateTimeKind.Local).AddTicks(2294),
+                            CreatedDate = new DateTime(2022, 4, 11, 19, 8, 45, 914, DateTimeKind.Local).AddTicks(5391),
                             Description = "C++ Programlama Dili ile ilgili en güncel bilgiler.",
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "InitialCreate",
-                            ModifiedDate = new DateTime(2022, 4, 11, 3, 33, 4, 61, DateTimeKind.Local).AddTicks(2296),
+                            ModifiedDate = new DateTime(2022, 4, 11, 19, 8, 45, 914, DateTimeKind.Local).AddTicks(5394),
                             Name = "C++",
                             Note = "C++ Blog Kategorisi"
                         },
@@ -185,12 +185,12 @@ namespace BloggerWay.Data.Migrations
                         {
                             Id = 3,
                             CreatedByName = "InitialCreate",
-                            CreatedDate = new DateTime(2022, 4, 11, 3, 33, 4, 61, DateTimeKind.Local).AddTicks(2300),
+                            CreatedDate = new DateTime(2022, 4, 11, 19, 8, 45, 914, DateTimeKind.Local).AddTicks(5405),
                             Description = "JavaScript Programlama Dili ile ilgili en güncel bilgiler.",
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "InitialCreate",
-                            ModifiedDate = new DateTime(2022, 4, 11, 3, 33, 4, 61, DateTimeKind.Local).AddTicks(2301),
+                            ModifiedDate = new DateTime(2022, 4, 11, 19, 8, 45, 914, DateTimeKind.Local).AddTicks(5408),
                             Name = "JavaScript",
                             Note = "JavaScript Blog Kategorisi"
                         });
@@ -392,22 +392,24 @@ namespace BloggerWay.Data.Migrations
             modelBuilder.Entity("BloggerWay.Entities.Concrete.UserLogin", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("text");
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
 
                     b.Property<string>("ProviderKey")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<string>("ProviderDisplayName")
                         .HasColumnType("text");
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
 
-                    b.HasKey("LoginProvider");
+                    b.HasKey("LoginProvider", "ProviderKey");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserLogins");
+                    b.ToTable("AspNetUserLogins");
                 });
 
             modelBuilder.Entity("BloggerWay.Entities.Concrete.UserRole", b =>

@@ -114,6 +114,26 @@ namespace BloggerWay.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "text", nullable: true),
+                    UserId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
@@ -151,26 +171,6 @@ namespace BloggerWay.Data.Migrations
                     table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
                         name: "FK_AspNetUserTokens_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserLogins",
-                columns: table => new
-                {
-                    LoginProvider = table.Column<string>(type: "text", nullable: false),
-                    ProviderKey = table.Column<string>(type: "text", nullable: true),
-                    ProviderDisplayName = table.Column<string>(type: "text", nullable: true),
-                    UserId = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserLogins", x => x.LoginProvider);
-                    table.ForeignKey(
-                        name: "FK_UserLogins_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -251,9 +251,9 @@ namespace BloggerWay.Data.Migrations
                 columns: new[] { "Id", "CreatedByName", "CreatedDate", "Description", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedDate", "Name", "Note" },
                 values: new object[,]
                 {
-                    { 1, "InitialCreate", new DateTime(2022, 4, 11, 3, 33, 4, 61, DateTimeKind.Local).AddTicks(1338), "C# Programlama Dili ile ilgili en güncel bilgiler.", true, false, "InitialCreate", new DateTime(2022, 4, 11, 3, 33, 4, 61, DateTimeKind.Local).AddTicks(1830), "C#", "C# Blog Kategorisi" },
-                    { 2, "InitialCreate", new DateTime(2022, 4, 11, 3, 33, 4, 61, DateTimeKind.Local).AddTicks(2294), "C++ Programlama Dili ile ilgili en güncel bilgiler.", true, false, "InitialCreate", new DateTime(2022, 4, 11, 3, 33, 4, 61, DateTimeKind.Local).AddTicks(2296), "C++", "C++ Blog Kategorisi" },
-                    { 3, "InitialCreate", new DateTime(2022, 4, 11, 3, 33, 4, 61, DateTimeKind.Local).AddTicks(2300), "JavaScript Programlama Dili ile ilgili en güncel bilgiler.", true, false, "InitialCreate", new DateTime(2022, 4, 11, 3, 33, 4, 61, DateTimeKind.Local).AddTicks(2301), "JavaScript", "JavaScript Blog Kategorisi" }
+                    { 1, "InitialCreate", new DateTime(2022, 4, 11, 19, 8, 45, 914, DateTimeKind.Local).AddTicks(1204), "C# Programlama Dili ile ilgili en güncel bilgiler.", true, false, "InitialCreate", new DateTime(2022, 4, 11, 19, 8, 45, 914, DateTimeKind.Local).AddTicks(2846), "C#", "C# Blog Kategorisi" },
+                    { 2, "InitialCreate", new DateTime(2022, 4, 11, 19, 8, 45, 914, DateTimeKind.Local).AddTicks(5391), "C++ Programlama Dili ile ilgili en güncel bilgiler.", true, false, "InitialCreate", new DateTime(2022, 4, 11, 19, 8, 45, 914, DateTimeKind.Local).AddTicks(5394), "C++", "C++ Blog Kategorisi" },
+                    { 3, "InitialCreate", new DateTime(2022, 4, 11, 19, 8, 45, 914, DateTimeKind.Local).AddTicks(5405), "JavaScript Programlama Dili ile ilgili en güncel bilgiler.", true, false, "InitialCreate", new DateTime(2022, 4, 11, 19, 8, 45, 914, DateTimeKind.Local).AddTicks(5408), "JavaScript", "JavaScript Blog Kategorisi" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -283,6 +283,11 @@ namespace BloggerWay.Data.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserRoles_RoleId",
                 table: "AspNetUserRoles",
                 column: "RoleId");
@@ -302,11 +307,6 @@ namespace BloggerWay.Data.Migrations
                 name: "IX_Comments_ArticleId",
                 table: "Comments",
                 column: "ArticleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserLogins_UserId",
-                table: "UserLogins",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -318,6 +318,9 @@ namespace BloggerWay.Data.Migrations
                 name: "AspNetUserClaims");
 
             migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUserRoles");
 
             migrationBuilder.DropTable(
@@ -325,9 +328,6 @@ namespace BloggerWay.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Comments");
-
-            migrationBuilder.DropTable(
-                name: "UserLogins");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
