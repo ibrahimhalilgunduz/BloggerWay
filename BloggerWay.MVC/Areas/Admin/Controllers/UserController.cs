@@ -160,5 +160,20 @@ namespace BloggerWay.MVC.Areas.Admin.Controllers
 
             return fileName;//AliVeli_578_1_44_15_4_12_2022.png " "~/img/user.picture"
         }
+        public bool ImageDelete(string pictureName)
+        {
+            string wwwroot = _env.WebRootPath;
+            var fileToDelete = Path.Combine($"{wwwroot}/img", pictureName);
+            if (System.IO.File.Exists(fileToDelete))
+            {
+                System.IO.File.Delete(fileToDelete);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }
