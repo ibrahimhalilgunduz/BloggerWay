@@ -31,6 +31,7 @@ namespace BloggerWay.Services.Extensions
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
             serviceCollection.AddScoped<ICategoryService, CategoryManager>();
             serviceCollection.AddScoped<IArticleService, ArticleManager>();
+            serviceCollection.AddScoped<ICommentService, CommentManager>();
             return serviceCollection;
 
         }
