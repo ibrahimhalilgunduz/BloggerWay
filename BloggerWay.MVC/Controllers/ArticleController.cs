@@ -1,4 +1,5 @@
 ﻿using BloggerWay.Entities.Concrete;
+using BloggerWay.MVC.Attributes;
 using BloggerWay.MVC.Models;
 using BloggerWay.Services.Abstract;
 using BloggerWay.Shared.Utilities.Results.ComplexTypes;
@@ -31,6 +32,7 @@ namespace BloggerWay.MVC.Controllers
             return NotFound();
         }
         [HttpGet]
+        [ViewCountFilter]
         public async Task<IActionResult> Detail(int articleId)
         {
             var articleResult = await _articleService.GetAsync(articleId);
@@ -39,7 +41,7 @@ namespace BloggerWay.MVC.Controllers
                 var userArticles = await _articleService.GetAllByUserIdOnFilter(articleResult.Data.Article.UserId,
                     _articleRightSideBarWidgetOptions.FilterBy, _articleRightSideBarWidgetOptions.OrderBy, _articleRightSideBarWidgetOptions.IsAscending, _articleRightSideBarWidgetOptions.TakeSize, _articleRightSideBarWidgetOptions.CategoryId, _articleRightSideBarWidgetOptions.StartAt,
                     _articleRightSideBarWidgetOptions.EndAt, _articleRightSideBarWidgetOptions.MinViewCount, _articleRightSideBarWidgetOptions.MaxViewCount, _articleRightSideBarWidgetOptions.MinCommentCount, _articleRightSideBarWidgetOptions.MaxCommentCount);
-                await _articleService.IncreaseViewCountAsync(articleId);
+                //await _articleService.IncreaseViewCountAsync(articleId);
                 return View(new ArticleDetailViewModel
                 {
                     ArticleDto = articleResult.Data,
