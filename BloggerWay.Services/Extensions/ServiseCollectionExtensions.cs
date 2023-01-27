@@ -17,14 +17,14 @@ namespace BloggerWay.Services.Extensions
             serviceCollection.AddIdentity<User, Role>(options =>
             {
                 options.Password.RequireDigit = false;
-                options.Password.RequiredLength = 10;
+                options.Password.RequiredLength = 5;
                 options.Password.RequiredUniqueChars = 0;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
 
                 options.User.AllowedUserNameCharacters =
-             "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+             "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+$";
                 options.User.RequireUniqueEmail = true;
 
             }).AddEntityFrameworkStores<BloggerWayContext>();
