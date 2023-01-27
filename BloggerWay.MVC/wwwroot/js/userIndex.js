@@ -106,10 +106,10 @@
 
     /* DataTables end here */
 
-    /* Ajax GET / Getting the _CategoryAddPartial as Modal Form starts from here. */
+    /* Ajax GET / Getting the _UserAddPartial as Modal Form starts from here. */
 
     $(function () {
-        const url = '/Admin/Category/Add/';
+        const url = '/Admin/User/Add/';
         const placeHolderDiv = $('#modalPlaceHolder');
         $('#btnAdd').click(function () {
             $.get(url).done(function (data) {
@@ -118,7 +118,7 @@
             });
         });
 
-        /* Ajax GET / Getting the _CategoryAddPartial as Modal Form ends here. */
+        /* Ajax GET / Getting the _UserAddPartial as Modal Form ends here. */
 
         /* Ajax POST / Posting the FormData as CategoryAddDto starts from here. */
 
@@ -283,7 +283,8 @@
                                 .ModifiedByName}</td>
                                                     <td>
                                                         <button class="btn btn-primary btn-sm btn-update" data-id="${categoryUpdateAjaxModel.CategoryDto.Category.Id}"><span class="fas fa-edit"></span></button>
-                                                        <button class="btn btn-danger btn-sm btn-delete" data-id="${categoryUpdateAjaxModel.CategoryDto.Category.Id}"><span class="fas fa-minus-circle"></span></button>
+                                                        <button class="btn btn-danger btn-sm btn-delete" data-id="${categoryUpdateAjaxModel.CategoryDto.Category.Id
+                            }"><span class="fas fa-minus-circle"></span></button>
                                                     </td>
                                                 </tr>`;
                         const newTableRowObject = $(newTableRow);

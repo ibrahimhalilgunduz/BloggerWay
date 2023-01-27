@@ -18,16 +18,19 @@ namespace BloggerWay.MVC.Areas.Admin.Controllers
             _userManager = userManager;
         }
 
-
         public async Task<IActionResult> Index()
         {
             var users = await _userManager.Users.ToListAsync();
-
             return View(new UserListDto
             {
                 Users = users,
                 ResultStatus = ResultStatus.Success
             });
+        }
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return PartialView("_UserAddPartial");
         }
     }
 }
