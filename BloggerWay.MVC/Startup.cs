@@ -1,5 +1,7 @@
 
 using BloggerWay.MVC.AutoMapper;
+using BloggerWay.MVC.Helpers.Abstract;
+using BloggerWay.MVC.Helpers.Concrete;
 using BloggerWay.Services.AutoMapper.Profiles;
 using BloggerWay.Services.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -25,6 +27,7 @@ namespace BloggerWay.MVC
             services.AddSession();
             services.AddAutoMapper(typeof(CategoryProfile), typeof(ArticleProfile), typeof(UserProfile));
             services.LoadMyServices();
+            services.AddScoped<IImageHelper, ImageHelper>();
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = new PathString("/Admin/User/Login");
