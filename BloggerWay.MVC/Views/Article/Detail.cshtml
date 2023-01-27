@@ -30,17 +30,17 @@
 
     <hr>
     
-    <p class="text-center">Okunma Sayısı: <span class="badge badge-info">@Model.Article.ViewCount</span> Yorum Sayısı: <span class="badge badge-warning">@Model.Article.CommentCount</span></p>
+    <p class="text-center">Okunma Sayısı: <span style="background-color:darkslategrey"class="badge badge-info">@Model.Article.ViewCount</span> Yorum Sayısı: <span style="background-color:#c47941" class="badge badge-warning"><a style="color:white">@Model.Article.CommentCount</a></span></p>
 
     <!-- Comments Form -->
-    <div style="background-color:#007bff" class="card my-4">
-        <h5 style="color:white" class="card-header">Bir yorum ekle:</h5>
+    <div style="background-color:#F5F5F5" class="card my-4">
+        <h5 style="color:black" class="card-header">Bir yorum ekle:</h5>
         <div class="card-body">
             <form>
                 <div class="form-group">
                     <textarea class="form-control" rows="3"></textarea>
                 </div>
-                <button style="background-color:yellow" type="submit" class="btn btn-primary"><p style="color:black">Ekle</p></button>
+                <button style="background-color:#c47941" type="submit" class="btn btn-primary"><p style="color:white">Ekle</p></button>
 
             </form>
         </div>

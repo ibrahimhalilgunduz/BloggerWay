@@ -5,9 +5,8 @@
     Layout = "_Layout";
     Regex regex = new Regex("<[^>]*>");
 }
-<div style="background-color:" class="col-md-8">
-
-    <h1 class="my-4">
+<div style="color:black" class="col-md-8">
+   <h1 class="my-4">
         <b > Son Paylaşılan Makaleler</b>
     </h1>
     
@@ -24,10 +23,10 @@
                    }
                    @(article.Content.Length>250 ? article.Content.Substring(0,250) : article.Content)
                </p>
-               <a style="background-color:yellow" href="/Article/Detail?articleId=@article.Id"  class="btn btn-primary"><p style="color:black">Daha fazla oku &rarr;</p></a>
+               <a style="background-color:#c47941" href="/Article/Detail?articleId=@article.Id"  class="btn btn-primary"><p style="color:white">Daha fazla oku &rarr;</p></a>
 
            </div>
-           <div style="background-color:#007bff"class="card-footer text-muted">
+           <div style="background-color:#487a7a"class="card-footer text-muted">
                 <p style="color:white">  @article.User.UserName tarafından @article.Date tarihinde paylaşıldı.</p>
            </div>
        </div>

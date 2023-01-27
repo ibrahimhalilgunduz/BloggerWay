@@ -3,13 +3,13 @@
 <div class="row-cols-md-6">
 
     
-    <div style="background-color:#007bff"  class="card my-auto">
-        <h5 style="color:white" class="card-header">Arama</h5>
+    <div style="background-color:whitesmoke"  class="card my-auto">
+        <h5 style="color:black" class="card-header">Arama</h5>
         <div class="card-body">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Aramak istenen anahtar kelime...">
-                <span class="input-group-append">
-                    <button style="background-color:yellow"  class="btn btn-info" type="button"><p style="color:black">Ara!</p></button>
+                <input type="text" class="form-control" placeholder="Aramak istenen kelime...">
+                <span class="input-group-append ">
+                    <button style="background-color:#c47941"  class="btn btn-info" type="button"><p style="color:white">Ara!</p></button>
                 </span>
             </div>
         </div>
@@ -17,24 +17,24 @@
 </div>        
 
 
-    <div style="background-color:#007bff" class="widget widget-catgs my-4">
-              <ul style="color:white"class="catgs-links">
+    <div style="background-color:whitesmoke" class="widget widget-catgs my-4">
+              <ul style="color:black"class="catgs-links">
                             
                         </ul>
         <h3 class="widget-title">Kategoriler</h3>
         <ul style="color:white"class="catgs-links">
-        <li><a style="color:white"  href="~/Home/Index">Hepsi</a></li>
+        <li><a style="color:black"  href="~/Home/Index">Hepsi</a></li>
             @foreach (var category in Model.Categories)
             {
-                <li><a style="color:white" asp-controller="Home" asp-action="Index" href="~/?categoryId=@category.Id">@category.Name</a></li>
+                <li><a style="color:black" asp-controller="Home" asp-action="Index" href="~/?categoryId=@category.Id">@category.Name</a></li>
             }
         </ul>
     </div>
 
     <!-- Side Widget -->
-    <div style="background-color:#007bff" class="widget widget-catgs my-4">
+    <div style="background-color:whitesmoke" class="widget widget-catgs my-4">
         <h5  class="widget-title">En Çok Okunan Makaleler</h5>
-        <div style="background-color: #007bff"class="catgs-links">
+        <div style="background-color: black"class="catgs-links">
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="list-group">
@@ -42,14 +42,14 @@
                         {
                             if (i%2==0)
                             {
-                                <li style="background-color: #007bff" class="list-group-item list-group-item">
-                                    <a style="color:lightyellow" href="~/Article/Detail?articleId=@Model.Articles[i].Id">@Model.Articles[i].Title</a>
+                                <li style="background-color: whitesmoke" class="list-group-item list-group-item">
+                                    <a style="color:black" href="~/Article/Detail?articleId=@Model.Articles[i].Id">@Model.Articles[i].Title</a>
                                </li>
                             }
                             else
                             {
-                                <li style="background-color: #007bff" class="list-group-item list-group-item">
-                                    <a style="color:yellow" href="~/Article/Detail?articleId=@Model.Articles[i].Id">@Model.Articles[i].Title</a>
+                                <li style="background-color: whitesmoke" class="list-group-item list-group-item">
+                                    <a style="color:#c47941" href="~/Article/Detail?articleId=@Model.Articles[i].Id">@Model.Articles[i].Title</a>
                                 </li>
                             }
                         }
