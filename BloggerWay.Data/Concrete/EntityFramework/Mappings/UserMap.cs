@@ -13,6 +13,19 @@ namespace BloggerWay.Data.Concrete.EntityFramework.Mappings
         {
             builder.Property(u => u.Picture).IsRequired();
             builder.Property(u => u.Picture).HasMaxLength(250);
+            // Social Media Links
+            builder.Property(u => u.YoutubeLink).HasMaxLength(250);
+            builder.Property(u => u.TwitterLink).HasMaxLength(250);
+            builder.Property(u => u.InstagramLink).HasMaxLength(250);
+            builder.Property(u => u.FacebookLink).HasMaxLength(250);
+            builder.Property(u => u.LinkedInLink).HasMaxLength(250);
+            builder.Property(u => u.GitHubLink).HasMaxLength(250);
+            builder.Property(u => u.WebsiteLink).HasMaxLength(250);
+            // About
+            builder.Property(u => u.FirstName).HasMaxLength(30);
+            builder.Property(u => u.LastName).HasMaxLength(30);
+            builder.Property(u => u.About).HasMaxLength(1000);
+
             // Primary key
             builder.HasKey(u => u.Id);
 
@@ -21,9 +34,9 @@ namespace BloggerWay.Data.Concrete.EntityFramework.Mappings
             builder.HasIndex(u => u.NormalizedEmail).HasDatabaseName("EmailIndex");
 
             // Maps to the AspNetUsers table
-            builder.ToTable("AspNetUsers");
+            builder.ToTable("Users");
 
-            // A concurrency token for use with the optimistic concurrency checking
+            // A concurrency token for use concurrency checking
             builder.Property(u => u.ConcurrencyStamp).IsConcurrencyToken();
 
             // Limit the size of columns to use efficient database types
@@ -55,7 +68,17 @@ namespace BloggerWay.Data.Concrete.EntityFramework.Mappings
                 Email = "adminuser@gmail.com",
                 NormalizedEmail = "ADMINUSER@GMAIL.COM",
                 PhoneNumber = "+905555555555",
-                Picture = "defaultUser.png",
+                Picture = "/userImages/defaultUser.png",
+                FirstName = "Admin",
+                LastName = "User",
+                About = "Admin User of BloggerWay",
+                TwitterLink = "https://twitter.com/adminuser",
+                InstagramLink = "https://instagram.com/adminuser",
+                YoutubeLink = "https://youtube.com/adminuser",
+                GitHubLink = "https://github.com/adminuser",
+                LinkedInLink = "https://linkedin.com/adminuser",
+                WebsiteLink = "https://bloggerway.com/",
+                FacebookLink = "https://facebook.com/adminuser",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
                 SecurityStamp = Guid.NewGuid().ToString()
@@ -69,7 +92,17 @@ namespace BloggerWay.Data.Concrete.EntityFramework.Mappings
                 Email = "editoruser@gmail.com",
                 NormalizedEmail = "EDITORUSER@GMAIL.COM",
                 PhoneNumber = "+905555555555",
-                Picture = "defaultUser.png",
+                Picture = "/userImages/defaultUser.png",
+                FirstName = "Admin",
+                LastName = "User",
+                About = "Editor User of BloggerWay",
+                TwitterLink = "https://twitter.com/editoruser",
+                InstagramLink = "https://instagram.com/editoruser",
+                YoutubeLink = "https://youtube.com/editoruser",
+                GitHubLink = "https://github.com/editoruser",
+                LinkedInLink = "https://linkedin.com/editoruser",
+                WebsiteLink = "https://bloggerway.com/",
+                FacebookLink = "https://facebook.com/editoruser",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
                 SecurityStamp = Guid.NewGuid().ToString()

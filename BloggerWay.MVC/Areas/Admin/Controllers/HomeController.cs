@@ -12,7 +12,6 @@ namespace BloggerWay.MVC.Areas.Admin.Controllers
 {
 
     [Area("Admin")]
-    [Authorize(Roles = "Admin,Editor")]
     public class HomeController : Controller
     {
         private readonly ICategoryService _categoryService;
@@ -27,7 +26,7 @@ namespace BloggerWay.MVC.Areas.Admin.Controllers
             _commentService = commentService;
             _userManager = userManager;
         }
-
+        [Authorize(Roles = "SuperAdmin,AdminArea.Home.Read")]
         public async Task<IActionResult> Index()
         {
             var categoriesCountResult = await _categoryService.CountByNonDeletedAsync();
