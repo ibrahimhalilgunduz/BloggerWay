@@ -1,5 +1,6 @@
 ﻿@using Microsoft.Extensions.Options
 @using BloggerWay.Entities.Concrete
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @inject IOptions<WebsiteInfo> WebsiteInfo
 @{
     var websiteInfo = WebsiteInfo.Value;
@@ -30,34 +31,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" crossorigin="anonymous" />
 </head>
 <body>
-
-    <div class="wrapper">
-        <header>
-            <div class="container">
-                <div class="top-bar">
-           
-                    <nav>
-                        <ul>
-                            <li><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
-                            <li><a asp-controller="Home" asp-action="About">Hakkımızda</a></li>
-                            <li><a asp-controller="Home" asp-action="Contact">İletişim</a></li>
-
-
-                        </ul>
-                    </nav>
-
-                    <div class="clearfix"></div>
-                </div>
-                <div class="bottom-header">
-                    <div class="container">
-                        <div class="logo">
-                            <h2><a style="color:darkslategrey" asp-controller="Home" asp-action="Index">BloggerWay</a></h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-
+  <partial name="_MainMenuPartial"/>
   
 
 
@@ -79,7 +53,7 @@
 
 
 
-        <footer style="background-color:darkslategrey">
+        <footer style="background-color:#182539">
             <div class="container">
                 <div  class="footer-content">
                     <div class="row">

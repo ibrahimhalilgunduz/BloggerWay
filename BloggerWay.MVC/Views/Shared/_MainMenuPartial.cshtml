@@ -1,0 +1,83 @@
+﻿@using Microsoft.Extensions.Options
+@using BloggerWay.Entities.Concrete
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject IOptions<WebsiteInfo> WebsiteInfo
+@{
+    var websiteInfo = WebsiteInfo.Value;
+}
+
+
+ <div class="preloader">
+        <div class="blobs">
+            <div class="blob-center"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <a asp-controller="Home" asp-action="Index">Anasayfa</a>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <defs>
+                <filter id="goo">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                    <feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                    <feBlend in="SourceGraphic" in2="goo" />
+                </filter>
+            </defs>
+        </svg>
+    </div>
+    <div class="wrapper">
+        <header>
+            <div class="container">
+                <div class="top-bar">
+            <div class="menu-btn">
+                        <a  title="">
+                            <span class="bar1"></span>
+                            <span class="bar2"></span>
+                            <span class="bar3"></span>
+                        </a>
+                    </div>
+                    <nav>
+                        <ul>
+                            <li><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+                            <li><a asp-controller="Home" asp-action="About">Hakkımızda</a></li>
+                            <li><a asp-controller="Home" asp-action="Contact">İletişim</a></li>
+
+
+                        </ul>
+                    </nav>
+                       <div class="rt-subs">
+                        @if (string.IsNullOrEmpty(User.Identity.Name))
+                        {
+                            <a class="subscribe-btn" asp-area="Admin" asp-controller="Auth" asp-action="Login" title=""> Yönetim Paneli</a>
+                        }
+                        else
+                        {
+                            <a class="subscribe-btn" asp-controller="Home" asp-action="Index" asp-area="Admin" title=""> Yönetici</a>
+                            <a class="subscribe-btn" asp-area="Admin" asp-controller="Auth" asp-action="Logout" title=""> Çıkış Yap</a>
+                        }
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="bottom-header">
+                    <div class="container">
+                        <div class="logo">
+                            <h2><a style="color:#182539" asp-controller="Home" asp-action="Index">BloggerWay</a></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+         <div class="side-menu">
+            <a href="#" title="" class="close-sidemenu"><i class="la la-close"></i></a>
+            <ul class="navigation">
+                    <li ><a style="color:orange" asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+                            <li > <a style="color:orange" asp-controller="Home" asp-action="About">Hakkımızda</a></li>
+                            <li ><a style="color:orange" asp-controller="Home" asp-action="Contact">İletişim</a></li>
+            </ul>   <div class="logo">
+                <h2><a style="color:#182539" asp-area=""  asp-controller="Home"asp-action="Index" title="">BloggerWay</a></h2>
+            </div>
+
+        </div>
