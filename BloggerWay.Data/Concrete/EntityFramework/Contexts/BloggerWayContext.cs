@@ -10,6 +10,10 @@ namespace BloggerWay.Data.Concrete.EntityFramework.Contexts
         public DbSet<Article> Articles { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        /* cd ~\BloggerWay.Data
+        dotnet ef --startup-project ..\BloggerWay.MVC migrations add 
+        dotnet ef --startup-project ..\BloggerWay.MVC\ database update 
+         */
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
