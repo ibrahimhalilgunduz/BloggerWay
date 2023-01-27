@@ -38,60 +38,39 @@
     // DataTable
 
     // Chart.js
-    const categories = [
-        {
-            name: 'C#',
-            viewCount: '24500'
-        },
-        {
-            name: 'C++',
-            viewCount: '77000'
-        },
-        {
-            name: 'Javascript',
-            viewCount: '57800'
-        },
-        {
-            name: 'Dart',
-            viewCount: '2250'
-        },
-        {
-            name: 'PHP',
-            viewCount: '123000'
-        },
-        {
-            name: 'Typescript',
-            viewCount: '18999'
-        }
-    ];
 
+    $.get('/Admin/Article/GetAllByViewCount/?isAscending=false&takeSize=10',
+        function (data) {
+            const articleResult = jQuery.parseJSON(data);
 
-    let viewCountContext = $('#viewCountChart');
+            let viewCountContext = $('#viewCountChart');
 
-    let viewCountChart = new Chart(viewCountContext,
-        {
-            type: 'bar',
-            data: {
-                labels: categories.map(category => category.name),
-                datasets: [
-                    {
-                        label: 'Okunma Sayısı',
-                        data: categories.map(category => category.viewCount),
-                        backgroundColor: ['#845ec2', '#ffc75f', '#f9f871', '#ff5e78', '#a4ebf3'],
-                        hoverBorderWidth: 4,
-                        hoverBorderColor: 'black'
-                    }]
-            },
-            options: {
-                plugins: {
-                    legend: {
-                        labels: {
-                            font: {
-                                size: 18
+            let viewCountChart = new Chart(viewCountContext,
+                {
+                    type: 'bar',
+                    data: {
+                        labels: articleResult.$values.map(article => article.Title),
+                        datasets: [
+                            {
+                                label: 'Okunma Sayısı',
+                                data: articleResult.$values.map(article => article.ViewCount),
+                                backgroundColor: '#fb3640',
+                                hoverBorderWidth: 4,
+                                hoverBorderColor: 'black'
+                            }]
+                    },
+                    options: {
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    font: {
+                                        size: 18
+                                    }
+                                }
                             }
                         }
                     }
-                }
-            }
+                });
         });
+
 });
