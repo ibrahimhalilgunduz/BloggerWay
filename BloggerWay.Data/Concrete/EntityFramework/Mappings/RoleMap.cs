@@ -1,7 +1,6 @@
 ﻿using BloggerWay.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 
 namespace BloggerWay.Data.Concrete.EntityFramework.Mappings
 {
@@ -9,33 +8,30 @@ namespace BloggerWay.Data.Concrete.EntityFramework.Mappings
     {
         public void Configure(EntityTypeBuilder<Role> builder)
         {
+            // Primary key
             builder.HasKey(r => r.Id);
-            builder.Property(r => r.Id).ValueGeneratedOnAdd();
-            builder.Property(r => r.Name).HasMaxLength(30);
-            builder.Property(r => r.Description).IsRequired(true).HasMaxLength(250);
-            builder.Property(r => r.CreatedByName).IsRequired(true).HasMaxLength(50);
-            builder.Property(r => r.ModifiedByName).IsRequired(true).HasMaxLength(50);
-            builder.Property(r => r.CreatedDate).IsRequired(true);
-            builder.Property(r => r.ModifiedDate).IsRequired(true);
-            builder.Property(r => r.IsActive).IsRequired(true);
-            builder.Property(r => r.IsDeleted).IsRequired(true);
-            builder.Property(r => r.Note).HasMaxLength(500);
-            builder.ToTable("Roles");
-            builder.HasData(new Role
-            {
-                Id = 1,
-                Name = "Admin",
-                Description = "Admin Rolü, tüm haklara sahiptir",
-                IsActive = true,
-                IsDeleted = false,
-                CreatedByName = "InitialCreate",
-                CreatedDate = DateTime.Now,
-                ModifiedByName = "InıtialCreate",
-                ModifiedDate = DateTime.Now,
-                Note = "Admin Rolüdür"
 
-            });
+            // Index for "normalized" role name to allow efficient lookups
+            builder.HasIndex(r => r.NormalizedName).HasDatabaseName("RoleNameIndex").IsUnique();
 
+            // Maps to the AspNetRoles table
+            builder.ToTable("AspNetRoles");
+
+            // A concurrency token for use with the optimistic concurrency checking
+            builder.Property(r => r.ConcurrencyStamp).IsConcurrencyToken();
+
+            // Limit the size of columns to use efficient database types
+            builder.Property(u => u.Name).HasMaxLength(100);
+            builder.Property(u => u.NormalizedName).HasMaxLength(100);
+
+            // The relationships between Role and other entity types
+            // Note that these relationships are configured with no navigation properties
+
+            // Each Role can have many entries in the UserRole join table
+            builder.HasMany<UserRole>().WithOne().HasForeignKey(ur => ur.RoleId).IsRequired();
+
+            // Each Role can have many associated RoleClaims
+            builder.HasMany<RoleClaim>().WithOne().HasForeignKey(rc => rc.RoleId).IsRequired();
         }
     }
 }

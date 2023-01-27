@@ -33,7 +33,7 @@ namespace BloggerWay.Data.Concrete.EntityFramework.Mappings
             builder.HasData(
                 new Article
                 {
-                    Id = 1,
+
                     CategoryId = 1,
                     Title = "C# .Net5 özellikleri ",
                     Content = " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
@@ -55,7 +55,7 @@ namespace BloggerWay.Data.Concrete.EntityFramework.Mappings
                 },
                 new Article
                 {
-                    Id = 2,
+
                     CategoryId = 2,
                     Title = "C++ 11 ve 19 özellikleri ",
                     Content = " Bir okuyucunun, sayfa düzenine bakarken sayfanın okunabilir içeriği tarafından dikkatinin dağılacağı uzun süredir bilinen bir gerçektir. Lorem Ipsum kullanmanın amacı, 'İçerik burada, içerik burada' kullanılmasının aksine, harflerin az çok normal dağılımına sahip olması ve okunabilir İngilizce gibi görünmesini sağlamasıdır. Birçok masaüstü yayıncılık paketi ve web sayfası düzenleyicisi artık varsayılan model metni olarak Lorem Ipsum'u kullanıyor ve 'lorem ipsum' araması, henüz emekleme aşamasında olan birçok web sitesini ortaya çıkaracaktır. Yıllar içinde, bazen tesadüfen, bazen de bilerek (enjekte edilmiş mizah ve benzeri) çeşitli versiyonlar gelişti.",
@@ -77,7 +77,7 @@ namespace BloggerWay.Data.Concrete.EntityFramework.Mappings
                 },
                 new Article
                 {
-                    Id = 3,
+
                     CategoryId = 3,
                     Title = "JavaScript ES2019 ES2020 özellikleri ",
                     Content = " Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, " +

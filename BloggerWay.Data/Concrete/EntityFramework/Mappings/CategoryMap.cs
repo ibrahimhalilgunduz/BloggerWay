@@ -25,7 +25,7 @@ namespace BloggerWay.Data.Concrete.EntityFramework.Mappings
             builder.HasData(
             new Category
             {
-                Id = 1,
+
                 Name = "C#",
                 Description = "C# Programlama Dili ile ilgili en güncel bilgiler.",
                 IsActive = true,
@@ -38,7 +38,7 @@ namespace BloggerWay.Data.Concrete.EntityFramework.Mappings
             },
             new Category
             {
-                Id = 2,
+
                 Name = "C++",
                 Description = "C++ Programlama Dili ile ilgili en güncel bilgiler.",
                 IsActive = true,
@@ -51,7 +51,7 @@ namespace BloggerWay.Data.Concrete.EntityFramework.Mappings
             },
              new Category
              {
-                 Id = 3,
+
                  Name = "JavaScript",
                  Description = "JavaScript Programlama Dili ile ilgili en güncel bilgiler.",
                  IsActive = true,

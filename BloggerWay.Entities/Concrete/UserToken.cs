@@ -3,9 +3,8 @@ using System;
 
 namespace BloggerWay.Entities.Concrete
 {
-    public class Role : IdentityRole<Guid>
+    public class UserToken : IdentityUserToken<Guid>
     {
-
 
     }
 }

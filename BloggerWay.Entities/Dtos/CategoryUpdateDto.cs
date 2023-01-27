@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace BloggerWay.Entities.Dtos
@@ -6,7 +7,7 @@ namespace BloggerWay.Entities.Dtos
     public class CategoryUpdateDto
     {
         [Required]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [DisplayName("Kategori Adı")]
         [Required(ErrorMessage = "{0} boş geçilmemelidir.")]
         [MaxLength(70, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
