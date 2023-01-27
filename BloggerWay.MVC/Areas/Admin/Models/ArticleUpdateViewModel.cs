@@ -9,6 +9,8 @@ namespace BloggerWay.MVC.Areas.Admin.Models
 {
     public class ArticleUpdateViewModel
     {
+        [Required]
+        public int Id { get; set; }
         [DisplayName("Başlık")]
         [Required(ErrorMessage = "{0} alanı boş geçilmemelidir.")]
         [MaxLength(100, ErrorMessage = "{0} alanı {1} karakterden büyük olmamalıdır.")]
@@ -21,7 +23,6 @@ namespace BloggerWay.MVC.Areas.Admin.Models
         [DisplayName("Küçük Resim")]
         public string Thumbnail { get; set; }
         [DisplayName("Küçük Resim Ekle")]
-        [Required(ErrorMessage = "{0} alanı boş geçilmemelidir.")]
         public IFormFile ThumbnailFile { get; set; }
         [DisplayName("Tarih")]
         [Required(ErrorMessage = "{0} alanı boş geçilmemelidir.")]
@@ -48,6 +49,9 @@ namespace BloggerWay.MVC.Areas.Admin.Models
         [DisplayName("Aktif Mi?")]
         [Required(ErrorMessage = "{0} alanı boş geçilmemelidir.")]
         public bool IsActive { get; set; }
+        [Required]
+        public int UserId { get; set; }
         public IList<Category> Categories { get; set; }
     }
 }
+

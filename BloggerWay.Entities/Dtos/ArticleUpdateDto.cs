@@ -52,6 +52,7 @@ namespace BloggerWay.Entities.Dtos
         [DisplayName("Silinsin Mi?")]
         [Required(ErrorMessage = "{0} alanı boş geçilmemelidir.")]
         public bool IsDeleted { get; set; }
-
+        [Required]
+        public int UserId { get; set; }
     }
 }
