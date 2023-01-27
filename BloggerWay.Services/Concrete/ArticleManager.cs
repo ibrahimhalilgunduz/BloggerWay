@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace BloggerWay.Services.Concrete
 {
+
     public class ArticleManager : ManagerBase, IArticleService
     {
 
@@ -207,6 +208,20 @@ namespace BloggerWay.Services.Concrete
                 TotalCount = searchedArticles.Count,
                 IsAscending = isAscending
             });
+        }
+
+        public async Task<IResult> IncreaseViewCountAsync(int articleId)
+        {
+            var article = await UnitOfWork.Articles.GetAsync(a => a.Id == articleId);
+            if (article == null)
+            {
+                return new Result(ResultStatus.Error, Messages.Article.NotFound(isPlural: false));
+            }
+
+            article.ViewCount += 1;
+            await UnitOfWork.Articles.UpdateAsync(article);
+            await UnitOfWork.SaveAsync();
+            return new Result(ResultStatus.Success, Messages.Article.IncreaseViewCount(article.Title));
         }
 
         public async Task<IResult> AddAsync(ArticleAddDto articleAddDto, string createdByName, int userId)
