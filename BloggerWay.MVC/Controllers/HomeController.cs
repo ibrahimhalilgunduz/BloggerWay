@@ -1,5 +1,4 @@
-﻿
-using BloggerWay.Entities.Concrete;
+﻿using BloggerWay.Entities.Concrete;
 using BloggerWay.Entities.Dtos;
 using BloggerWay.Services.Abstract;
 using BloggerWay.Shared.Utilities.Extensions.Helpers.Abstract;
@@ -38,11 +37,6 @@ namespace BloggerWay.MVC.Controllers
         [HttpGet]
         public IActionResult About()
         {
-            _aboutUsPageInfoWriter.Update(x =>
-            {
-                x.Header = "Yeni Başlık";
-                x.Content = "Yeni İçerik";
-            });
             return View(_aboutUsPageInfo);
         }
         [HttpGet]
