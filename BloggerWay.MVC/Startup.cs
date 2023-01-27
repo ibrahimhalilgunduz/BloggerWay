@@ -5,6 +5,7 @@ using BloggerWay.MVC.Helpers.Abstract;
 using BloggerWay.MVC.Helpers.Concrete;
 using BloggerWay.Services.AutoMapper.Profiles;
 using BloggerWay.Services.Extensions;
+using BloggerWay.Shared.Utilities.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,6 +32,8 @@ namespace BloggerWay.MVC
             services.Configure<AboutUsPageInfo>(Configuration.GetSection("AboutUsPageInfo"));
             services.Configure<WebsiteInfo>(Configuration.GetSection("WebsiteInfo"));
             services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
+            services.ConfigureWritable<AboutUsPageInfo>(Configuration.GetSection("AboutUsPageInfo"));
+
             services.AddControllersWithViews(options =>
             {
                 options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(value => "Bu alan boþ geçilmemelidir.");

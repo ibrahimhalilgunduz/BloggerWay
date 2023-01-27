@@ -1,7 +1,7 @@
 ﻿@using Microsoft.Extensions.Options
 @using BloggerWay.Entities.Concrete
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@inject IOptions<WebsiteInfo> WebsiteInfo
+@inject IOptionsSnapshot<WebsiteInfo> WebsiteInfo
 @{
     var websiteInfo = WebsiteInfo.Value;
 }
@@ -64,7 +64,7 @@
                 <div class="bottom-header">
                     <div class="container">
                         <div class="logo">
-                            <h2><a style="color:#182539" asp-controller="Home" asp-action="Index">BloggerWay</a></h2>
+                            <h2><a style="color:#182539" asp-controller="Home" asp-action="Index">@websiteInfo.MenuTitle</a></h2>
                         </div>
                     </div>
                 </div>
