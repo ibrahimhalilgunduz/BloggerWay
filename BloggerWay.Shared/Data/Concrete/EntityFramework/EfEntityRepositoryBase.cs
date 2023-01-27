@@ -29,9 +29,9 @@ namespace BloggerWay.Shared.Data.Concrete.EntityFramework
             return await _context.Set<TEntity>().AnyAsync(predicate);
         }
 
-        public Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate = null)
         {
-            return _context.Set<TEntity>().CountAsync(predicate);
+            return await (predicate == null ? _context.Set<TEntity>().CountAsync() : _context.Set<TEntity>().CountAsync(predicate));
         }
 
         public async Task DeleteAsync(TEntity entity)

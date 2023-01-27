@@ -7,6 +7,7 @@
             "<'row'<'col-sm-3'l><'col-sm-6 text-center'B><'col-sm-3'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        "order": [[6, "desc"]],
         buttons: [
             {
                 text: 'Ekle',
@@ -283,7 +284,8 @@
                                 .ModifiedByName}</td>
                                                     <td>
                                                         <button class="btn btn-primary btn-sm btn-update" data-id="${categoryUpdateAjaxModel.CategoryDto.Category.Id}"><span class="fas fa-edit"></span></button>
-                                                        <button class="btn btn-danger btn-sm btn-delete" data-id="${categoryUpdateAjaxModel.CategoryDto.Category.Id}"><span class="fas fa-minus-circle"></span></button>
+                                                        <button class="btn btn-danger btn-sm btn-delete" data-id="${categoryUpdateAjaxModel.CategoryDto.Category.Id
+                            }"><span class="fas fa-minus-circle"></span></button>
                                                     </td>
                                                 </tr>`;
                         const newTableRowObject = $(newTableRow);
