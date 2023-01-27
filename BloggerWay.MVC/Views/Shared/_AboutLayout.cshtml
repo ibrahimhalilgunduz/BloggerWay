@@ -50,48 +50,7 @@
 
 
 
-        <footer  style="background-color:#182539">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="ft-logo">
-                                <h1><a asp-controller="Home" asp-action="Index">BloggerWay</a></h1>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                            <ul class="ft-links">
-                              <li><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
-                              <li><a asp-controller="Home" asp-action="About">Hakkımızda</a></li>
-                             <li><a asp-controller="Home" asp-action="Contact">İletişim</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-
-        <section class="bottom-strip">
-            <div class="container">
-                <p style="color:aliceblue">©@DateTime.Now.Year BloggerWay. Tüm Hakları Saklıdır.</p>
-            </div>
-        </section>
-
-        <div class="search-page">
-            <form>
-                <div class="container">
-                    <div class="form-field">
-                        <input type="text" name="search" placeholder="Enter Your Keywords">
-                        <button type="submit"><i class="la la-search"></i></button>
-                    </div>
-                </div>
-            </form>
-            <a href="#" title="" class="close-search"><i class="la la-close"></i></a>
-        </div>
- 
+ <partial name="_MainFooterPartial"/>
 
     <script src="~/blog/js/jquery.min.js"></script>
     <script src="~/blog/js/popper.js"></script>
