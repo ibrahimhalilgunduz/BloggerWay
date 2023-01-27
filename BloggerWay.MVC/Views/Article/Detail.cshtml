@@ -1,4 +1,5 @@
-﻿@model BloggerWay.Entities.Dtos.ArticleDto
+﻿@using BloggerWay.Entities.Dtos
+@model BloggerWay.Entities.Dtos.ArticleDto
 @{
     Layout = "_ArticleLayout";
     ViewBag.Title = Model.Article.Title;
@@ -7,54 +8,46 @@
     ViewBag.Tags = Model.Article.SeoTags;
 }
 <!-- Post Content Column -->
-<div  class="col-lg-8">
+<div class="col-lg-8">
 
     <!-- Title -->
-    <h1 style="color:black" class="mt-4"><b>@Model.Article.Title</b></h1>
+    <h1 class="mt-4">@Model.Article.Title</h1>
 
     <!-- Author -->
-    <p style="color:black" class="lead">
-        <b> @Model.Article.User.UserName tarafından @Model.Article.Date.ToShortDateString() tarihinde paylaşılmıştır.</b>
+    <p class="lead">
+        @Model.Article.User.UserName tarafından @Model.Article.Date.ToShortDateString() tarihinde paylaşılmıştır.
     </p>
 
     <hr>
 
     <!-- Preview Image -->
     <div class="text-center">
-    <img class="img-fluid rounded" src="~/img/@Model.Article.Thumbnail" alt="@Model.Article.Title">
+        <img class="img-fluid rounded" src="~/img/@Model.Article.Thumbnail" alt="@Model.Article.Title">
     </div>
     <hr>
 
     <!-- Post Content -->
-    <p> @Html.Raw(@Model.Article.Content)</p>
+    @Html.Raw(@Model.Article.Content)
 
     <hr>
     
-    <p class="text-center">Okunma Sayısı: <span style="background-color:darkslategrey"class="badge badge-info">@Model.Article.ViewCount</span> Yorum Sayısı: <span style="background-color:#c47941" class="badge badge-warning"><a style="color:white">@Model.Article.CommentCount</a></span></p>
+    <p class="text-center">Okunma Sayısı: <span class="badge badge-info">@Model.Article.ViewCount</span> Yorum Sayısı: <span class="badge badge-warning">@Model.Article.CommentCount</span></p>
 
     <!-- Comments Form -->
-    <div style="background-color:#F5F5F5" class="card my-4">
-        <h5 style="color:black" class="card-header">Bir yorum ekle:</h5>
-        <div class="card-body">
-            <form>
-                <div class="form-group">
-                    <textarea class="form-control" rows="3"></textarea>
+    <partial name="~/Views/Comment/_CommentAddPartial.cshtml" model="new CommentAddDto{ArticleId = Model.Article.Id}" />
+    
+    <div id="comments">
+        @foreach (var comment in Model.Article.Comments)
+        {<!-- Single Comment -->
+            <div class="media mb-4">
+                <img class="d-flex mr-3 rounded-circle" src="https://randomuser.me/api/portraits/men/34.jpg" alt="">
+                <div class="media-body">
+                    <h5 class="mt-0">@comment.CreatedByName</h5>
+                    @comment.Text
                 </div>
-                <button style="background-color:#c47941" type="submit" class="btn btn-primary"><p style="color:white">Ekle</p></button>
-
-            </form>
-        </div>
+            </div>}
     </div>
-
-    @foreach (var comment in Model.Article.Comments)
-    {
-        <!-- Single Comment -->
-        <div  class="media mb-4">
-            <img class="d-flex mr-3 rounded-circle" src="https://randomuser.me/api/portraits/men/34.jpg" alt="">
-            <div class="media-body">
-                <h5 class="mt-0">@comment.CreatedByName</h5>
-                @comment.Text
-            </div>
-        </div>
-    }
 </div>
+@section Scripts{ 
+    <script src="~/blog/js/articleDetail.js" type="text/ecmascript"></script>
+}
