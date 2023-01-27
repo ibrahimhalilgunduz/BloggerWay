@@ -8,6 +8,7 @@ using BloggerWay.Services.Abstract;
 using BloggerWay.Shared.Utilities.Results.ComplexTypes;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BloggerWay.MVC.Areas.Admin.Controllers
@@ -125,6 +126,14 @@ namespace BloggerWay.MVC.Areas.Admin.Controllers
             var categories = await _categoryService.GetAllByNonDeletedAndActiveAsync();
             articleUpdateViewModel.Categories = categories.Data.Categories;
             return View(articleUpdateViewModel);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> Delete(int articleId)
+        {
+            var result = await _articleService.DeleteAsync(articleId, LoggedInUser.UserName);
+            var articleResult = JsonSerializer.Serialize(result);
+            return Json(articleResult);
         }
 
     }
