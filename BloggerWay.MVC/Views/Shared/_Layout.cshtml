@@ -1,12 +1,21 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.Extensions.Options
+@using BloggerWay.Entities.Concrete
+@inject IOptions<WebsiteInfo> WebsiteInfo
+@{
+    var websiteInfo = WebsiteInfo.Value;
+}
+<!DOCTYPE html>
 <html lang="tr">
 
 <head>
-    <meta charset="UTF-8">
-    <title>@ViewBag.Title | BloggerWay</title>
+
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Programcılar ve Yazılımcılar için Türkçe Kaynak, Rehber ve İçerikler">
-    <meta name="author" content="BloggerWay">
+    <meta name="description" content="@websiteInfo.SeoDescription">
+    <meta name="author" content="@websiteInfo.SeoAuthor">
+    <meta name="keywords" content="@websiteInfo.SeoTags"/>
+
+    <title>@ViewBag.Title | @websiteInfo.Title</title>
 
     <link rel="stylesheet" type="text/css" href="~/blog/css/animate.css">
     <link rel="stylesheet" type="text/css" href="~/blog/css/bootstrap.min.css">
