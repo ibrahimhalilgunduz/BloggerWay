@@ -1,4 +1,5 @@
 
+using BloggerWay.MVC.AutoMapper;
 using BloggerWay.Services.AutoMapper.Profiles;
 using BloggerWay.Services.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -22,7 +23,7 @@ namespace BloggerWay.MVC
                 opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
             });
             services.AddSession();
-            services.AddAutoMapper(typeof(CategoryProfile), typeof(ArticleProfile));
+            services.AddAutoMapper(typeof(CategoryProfile), typeof(ArticleProfile), typeof(UserProfile));
             services.LoadMyServices();
             services.ConfigureApplicationCookie(options =>
             {
