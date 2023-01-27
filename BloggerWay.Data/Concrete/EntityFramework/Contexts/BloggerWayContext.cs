@@ -11,11 +11,14 @@ namespace BloggerWay.Data.Concrete.EntityFramework.Contexts
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseNpgsql(@"Server=127.0.0.1;Port=5432;Database=BloggerWay;User Id=postgres;Password=123;");
+        //}
+        public BloggerWayContext(DbContextOptions<BloggerWayContext> options) : base(options)
         {
-            optionsBuilder.UseNpgsql(@"Server=127.0.0.1;Port=5432;Database=BloggerWay;User Id=postgres;Password=123;");
-        }
 
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 

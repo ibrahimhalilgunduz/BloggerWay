@@ -4,15 +4,16 @@ using BloggerWay.Data.Concrete.EntityFramework.Contexts;
 using BloggerWay.Entities.Concrete;
 using BloggerWay.Services.Abstract;
 using BloggerWay.Services.Concrete;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BloggerWay.Services.Extensions
 {
     public static class ServiseCollectionExtensions
     {
-        public static IServiceCollection LoadMyServices(this IServiceCollection serviceCollection)
+        public static IServiceCollection LoadMyServices(this IServiceCollection serviceCollection, string connectionString)
         {
-            serviceCollection.AddDbContext<BloggerWayContext>();
+            serviceCollection.AddDbContext<BloggerWayContext>(options => options.UseNpgsql(connectionString));
             serviceCollection.AddIdentity<User, Role>(options =>
             {
                 options.Password.RequireDigit = false;
