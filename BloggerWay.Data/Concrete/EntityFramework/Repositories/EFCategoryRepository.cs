@@ -9,6 +9,7 @@ namespace BloggerWay.Data.Concrete.EntityFramework.Repositories
     {
         public EFCategoryRepository(DbContext context) : base(context)
         {
+
         }
     }
 }

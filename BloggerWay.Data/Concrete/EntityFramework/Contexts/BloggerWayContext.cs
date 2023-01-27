@@ -17,6 +17,5 @@ namespace BloggerWay.Data.Concrete.EntityFramework.Contexts
 
 
 
-
     }
 }
