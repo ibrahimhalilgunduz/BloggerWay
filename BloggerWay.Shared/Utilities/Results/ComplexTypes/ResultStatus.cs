@@ -4,7 +4,7 @@
     {
         Success = 0,
         Error = 1,
-        Warning = 2, // ResultStatus.Warning
-        Info = 3 // ResultStatus.Info
+        Warning = 2,
+        Info = 3
     }
 }
