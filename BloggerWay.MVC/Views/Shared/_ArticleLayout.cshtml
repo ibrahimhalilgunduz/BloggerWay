@@ -1,0 +1,196 @@
+﻿@*<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="author" content="@ViewBag.Author">
+    <meta name="keywords" content="@ViewBag.Tags"/>
+
+    <title>@ViewBag.Title | BloggerWay</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/BlogHome/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/BlogHome/css/blog-home.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">BloggerWay</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">
+                            Anasayfa
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="About">Hakkında</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Contact">İletişim</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            @RenderBody()
+
+            <!-- Sidebar Widgets Column -->
+            @await Component.InvokeAsync("RightSideBar")
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Tüm Hakları Saklıdır &copy; BloggerWay 2022</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/BlogHome/vendor/jquery/jquery.min.js"></script>
+    <script src="~/BlogHome/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
+*@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title | BloggerWay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Programcılar ve Yazılımcılar için Türkçe Kaynak, Rehber ve İçerikler">
+    <meta name="author" content="BloggerWay">
+
+    <link rel="stylesheet" type="text/css" href="~/blog/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/blog/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/blog/css/line-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/blog/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="~/blog/js/lib/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="~/blog/js/lib/slick/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="~/blog/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/blog/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="~/blog/css/color.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <header>
+            <div class="container">
+                <div class="top-bar">
+           
+                    <nav>
+                        <ul>
+                            <li><a href="~/Home" title="">Anasayfa</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="bottom-header">
+                    <div class="container">
+                        <div class="logo">
+                            <h2><a href="~/Home" title="">BloggerWay</a></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+
+
+
+        <section class="main-content pb-0">
+            <div class="container">
+                <div class="row">
+                    @RenderBody()
+                    <div class="col-lg-4">
+                        <div class="sidebar">
+                           
+                            @await Component.InvokeAsync("RightSideBar");
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="ft-logo">
+                                <h1><a href="#" title="">BloggerWay</a></h1>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                        </div>
+                        <div class="col-lg-4 col-md-12">
+                            <ul class="ft-links">
+                                <li><a href="~/Home" title="">Anasayfa</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <section class="bottom-strip">
+            <div class="container">
+                <p>©2022 BloggerWay. Tüm Hakları Saklıdır.</p>
+            </div>
+        </section>
+
+        <div class="search-page">
+            <form>
+                <div class="container">
+                    <div class="form-field">
+                        <input type="text" name="search" placeholder="Enter Your Keywords">
+                        <button type="submit"><i class="la la-search"></i></button>
+                    </div>
+                </div>
+            </form>
+            <a href="#" title="" class="close-search"><i class="la la-close"></i></a>
+        </div>
+    </div>
+
+    <script src="~/blog/js/jquery.min.js"></script>
+    <script src="~/blog/js/popper.js"></script>
+    <script src="~/blog/js/bootstrap.min.js"></script>
+    <script src="~/blog/js/lib/slick/slick.js"></script>
+    <script src="~/blog/js/script.js"></script>
+
+</body>
+</html>

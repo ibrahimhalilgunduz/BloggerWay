@@ -5,12 +5,12 @@
     Layout = "_Layout";
     Regex regex = new Regex("<[^>]*>");
 }
-<div class="col-md-8">
+<div style="background-color:" class="col-md-8">
 
     <h1 class="my-4">
-        Son Paylaşılan Makaleler
+        <b > Son Paylaşılan Makaleler</b>
     </h1>
-
+    
    @foreach (var article in Model.Articles)
    {
        <!-- Blog Post -->
@@ -20,14 +20,15 @@
                <h2 class="card-title">@article.Title</h2>
                <p class="card-text">
                    @{
-               @Html.Raw(article.Content); 
+                       article.Content = regex.Replace(article.Content, "");
                    }
                    @(article.Content.Length>250 ? article.Content.Substring(0,250) : article.Content)
                </p>
-               <a asp-controller="Article" asp-action="Detail" class="btn btn-primary">Daha fazla oku &rarr;</a>
+               <a style="background-color:yellow" href="/Article/Detail?articleId=@article.Id"  class="btn btn-primary"><p style="color:black">Daha fazla oku &rarr;</p></a>
+
            </div>
-           <div class="card-footer text-muted">
-               @article.User.UserName tarafından @article.Date tarihinde paylaşıldı.
+           <div style="background-color:#007bff"class="card-footer text-muted">
+                <p style="color:white">  @article.User.UserName tarafından @article.Date tarihinde paylaşıldı.</p>
            </div>
        </div>
    }

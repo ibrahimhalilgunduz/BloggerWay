@@ -8,6 +8,7 @@ using BloggerWay.Shared.Utilities.Results.Abstract;
 using BloggerWay.Shared.Utilities.Results.ComplexTypes;
 using BloggerWay.Shared.Utilities.Results.Concrete;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BloggerWay.Services.Concrete
@@ -21,7 +22,7 @@ namespace BloggerWay.Services.Concrete
 
         public async Task<IDataResult<ArticleDto>> GetAsync(int articleId)
         {
-            var article = await UnitOfWork.Articles.GetAsync(a => a.Id == articleId, a => a.User, a => a.Category);
+            var article = await UnitOfWork.Articles.GetAsync(a => a.Id == articleId, a => a.User, a => a.Category, a => a.Comments);
             if (article != null)
             {
                 return new DataResult<ArticleDto>(ResultStatus.Success, new ArticleDto
@@ -127,6 +128,19 @@ namespace BloggerWay.Services.Concrete
                 });
             }
             return new DataResult<ArticleListDto>(ResultStatus.Error, Messages.Article.NotFound(isPlural: true), null);
+        }
+
+        public async Task<IDataResult<ArticleListDto>> GetAllByViewCountAsync(bool isAscending, int? takeSize)
+        {
+            var articles =
+                await UnitOfWork.Articles.GetAllAsync(a => a.IsActive && !a.IsDeleted, a => a.Category, a => a.User);
+            var sortedArticles = isAscending
+                ? articles.OrderBy(a => a.ViewCount)
+                : articles.OrderByDescending(a => a.ViewCount);
+            return new DataResult<ArticleListDto>(ResultStatus.Success, new ArticleListDto
+            {
+                Articles = takeSize == null ? sortedArticles.ToList() : sortedArticles.Take(takeSize.Value).ToList()
+            });
         }
 
         public async Task<IResult> AddAsync(ArticleAddDto articleAddDto, string createdByName, int userId)
