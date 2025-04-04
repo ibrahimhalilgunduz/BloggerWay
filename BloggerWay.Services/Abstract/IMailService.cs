@@ -1,11 +1,11 @@
 ﻿using BloggerWay.Entities.Dtos;
 using BloggerWay.Shared.Utilities.Results.Abstract;
+using System.Threading.Tasks;
 
-namespace BloggerWay.Services.Abstract
+public interface IMailService
 {
-    public interface IMailService
-    {
-        IResult Send(EmailSendDto emailSendDto); // ali@veli.dev
-        IResult SendContactEmail(EmailSendDto emailSendDto); // ali@veli.dev info@BloggerWay.com iletisim@BloggerWay.com
-    }
+    IResult Send(EmailSendDto emailSendDto);
+    IResult SendContactEmail(EmailSendDto emailSendDto);
+    Task<IResult> SendAsync(EmailSendDto emailSendDto);
+    Task<IResult> SendContactEmailAsync(EmailSendDto emailSendDto);
 }
